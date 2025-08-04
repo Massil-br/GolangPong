@@ -6,26 +6,28 @@ import (
 	rl "github.com/gen2brain/raylib-go/raylib"
 )
 
+var Sm *engine.SceneManager
+
 func AppLoop() {
 	font := rl.LoadFont("assets/font/font.ttf")
 	defer rl.UnloadFont(font)
-	sm := &engine.SceneManager{}
+	Sm = &engine.SceneManager{}
 
 	SceneMenu := &engine.Scene{FrameData: &time.Data}
 
-	sm.AddScene(SceneMenu)
-	
-	sm.SetScene(0)
+	Sm.AddScene(SceneMenu)
 
-	SetupMainMenu(SceneMenu,&font)
+	Sm.SetScene(0)
+
+	SetupMainMenu(SceneMenu, &font)
 
 	for !rl.WindowShouldClose() {
 
 		time.Update()
-		sm.Update()
+		Sm.Update()
 		rl.BeginDrawing()
 		rl.ClearBackground(rl.Black)
-		sm.Draw()
+		Sm.Draw()
 		rl.EndDrawing()
 	}
 }

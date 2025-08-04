@@ -20,7 +20,13 @@ type Text struct {
 	PYPourcent  float32
 }
 
-func (t *Text) Start() {}
+func (t *Text) Start() {
+	t.FontSize = t.Parent.FrameData.Height / t.DivFontSize
+	t.Spacing = t.FontSize / t.DivSpacing
+	t.TextSize = rl.MeasureTextEx(*t.Font, t.Text, t.FontSize, t.Spacing)
+	t.Position.X = (t.Parent.FrameData.Width - t.TextSize.X) * (t.PXPourcent / 100)
+	t.Position.Y = (t.Parent.FrameData.Height - t.TextSize.Y) * (t.PYPourcent / 100)
+}
 
 func (t *Text) Update() {
 	t.FontSize = t.Parent.FrameData.Height / t.DivFontSize
