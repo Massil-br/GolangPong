@@ -1,9 +1,15 @@
 package time
 import rl "github.com/gen2brain/raylib-go/raylib"
 
-
-var DeltaTime float32
+type FrameData struct{
+	DeltaTime float32
+	Width float32
+	Height float32
+}
+var Data FrameData
 
 func Update() {
-	DeltaTime = rl.GetFrameTime()
+	Data.DeltaTime = rl.GetFrameTime()
+	Data.Width = float32(rl.GetRenderWidth())
+	Data.Height= float32(rl.GetRenderHeight())
 }

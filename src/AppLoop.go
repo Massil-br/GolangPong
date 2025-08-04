@@ -7,26 +7,20 @@ import (
 )
 
 func AppLoop() {
-
+	font := rl.LoadFont("assets/font/font.ttf")
+	defer rl.UnloadFont(font)
 	sm := &engine.SceneManager{}
 
-	sceneGame := &engine.Scene{DeltaTime: &time.DeltaTime}
-	sceneMenu := &engine.Scene{DeltaTime: &time.DeltaTime}
+	SceneMenu := &engine.Scene{FrameData: &time.Data}
 
-	player := &engine.GameObject{Name: "Player", Active: true}
-
-	player.AddComponent(&engine.Transform2D{
-		Position: rl.NewVector2(0, 0),
-		Scale:    rl.NewVector2(1, 1),
-	})
-	sceneGame.AddObject(player)
-
-	sm.AddScene(sceneGame)
-	sm.AddScene(sceneMenu)
-
+	sm.AddScene(SceneMenu)
+	
 	sm.SetScene(0)
 
+	SetupMainMenu(SceneMenu,&font)
+
 	for !rl.WindowShouldClose() {
+
 		time.Update()
 		sm.Update()
 		rl.BeginDrawing()

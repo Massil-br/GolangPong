@@ -1,37 +1,42 @@
 package engine
 
-type Component interface{
+import time "github.com/Massil-br/GolangPong/src/Engine/Time"
+
+type Component interface {
 	Start()
 	Update()
 	Draw()
+	SetParent(*GameObject)
 }
 
-type GameObject struct{
-	Name string
-	Active bool
+type GameObject struct {
+	Name       string
+	Active     bool
 	Components []Component
-	DeltaTime *float32
+	FrameData  *time.FrameData
+	Transform Transform2D
 }
 
-func(g *GameObject) AddComponent(c Component){
+func (g *GameObject) AddComponent(c Component) {
 	g.Components = append(g.Components, c)
+	c.SetParent(g)
 	c.Start()
 }
 
-func (g *GameObject) Update(){
-	if !g.Active{
+func (g *GameObject) Update() {
+	if !g.Active {
 		return
 	}
-	for _,comp := range g.Components{
+	for _, comp := range g.Components {
 		comp.Update()
 	}
 }
 
-func (g *GameObject) Draw(){
-	if !g.Active{
+func (g *GameObject) Draw() {
+	if !g.Active {
 		return
 	}
-	for _,comp := range g.Components{
+	for _, comp := range g.Components {
 		comp.Draw()
 	}
 }
