@@ -17,6 +17,8 @@ func AppLoop() {
 	engine.Sm.AddScene(SceneGame)
 	engine.Sm.SetScene(0)
 
+	time.Data.VirtualHeight = 1920
+	time.Data.VirtualWidth = 1080
 
 	SetupMainMenu(SceneMenu, &font)
 	SetupGameScene(SceneGame)
