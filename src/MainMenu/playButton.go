@@ -11,7 +11,7 @@ import (
 
 func SetupPlayButton(targetScene *engine.Scene, font *rl.Font) {
 	//gameObject
-	title := &engine.GameObject{Name: "Title",
+	title := &engine.GameObject{Name: "playButton",
 		Active: true,
 		Transform: engine.Transform2D{
 			Position: rl.NewVector2(0, 0),

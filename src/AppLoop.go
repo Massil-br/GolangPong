@@ -7,12 +7,11 @@ import (
 )
 
 var Sm *engine.SceneManager
-
 func AppLoop() {
 	font := rl.LoadFont("assets/font/font.ttf")
 	defer rl.UnloadFont(font)
 	Sm = &engine.SceneManager{}
-
+	running := &engine.Running
 	SceneMenu := &engine.Scene{FrameData: &time.Data}
 
 	Sm.AddScene(SceneMenu)
@@ -21,7 +20,7 @@ func AppLoop() {
 
 	SetupMainMenu(SceneMenu, &font)
 
-	for !rl.WindowShouldClose() {
+	for !rl.WindowShouldClose() && *running {
 
 		time.Update()
 		Sm.Update()

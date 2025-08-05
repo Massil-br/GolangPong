@@ -11,4 +11,5 @@ func SetupMainMenu(targetScene *engine.Scene, font *rl.Font) {
 
 	mainmenu.SetupTitle(targetScene, font)
 	mainmenu.SetupPlayButton(targetScene, font)
+	mainmenu.SetupQuitButton(targetScene,font)
 }

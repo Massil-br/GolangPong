@@ -1,0 +1,47 @@
+package mainmenuscript
+
+import (
+	engine "github.com/Massil-br/GolangPong/src/Engine"
+	"github.com/Massil-br/GolangPong/src/scripts"
+	rl "github.com/gen2brain/raylib-go/raylib"
+	//rl "github.com/gen2brain/raylib-go/raylib"
+)
+
+type QuitButton struct {
+	Parent        *engine.GameObject
+	Collider      rl.Rectangle
+	MousePosition rl.Vector2
+	Text          *scripts.Text
+	BaseColor     rl.Color
+	HoverColor    rl.Color
+}
+
+func (p *QuitButton) Start() {
+	p.MousePosition = rl.GetMousePosition()
+	p.Text = engine.GetComponent[*scripts.Text](p.Parent)
+	p.Collider = rl.NewRectangle(p.Text.Position.X, p.Text.Position.Y, p.Text.TextSize.X, p.Text.TextSize.Y)
+	p.BaseColor = p.Text.Color
+	p.HoverColor = rl.Red
+}
+func (p *QuitButton) Update() {
+	p.Collider.X = p.Text.Position.X
+	p.Collider.Y = p.Text.Position.Y
+	p.Collider.Width = p.Text.TextSize.X
+	p.Collider.Height = p.Text.TextSize.Y
+	p.MousePosition = rl.GetMousePosition()
+	if rl.CheckCollisionPointRec(p.MousePosition, p.Collider) {
+		p.Text.Color = p.HoverColor
+		if rl.IsMouseButtonPressed(rl.MouseLeftButton) {
+			engine.Running = false
+		}
+	} else {
+		p.Text.Color = p.BaseColor
+	}
+}
+func (p *QuitButton) Draw() {
+
+}
+
+func (p *QuitButton) SetParent(o *engine.GameObject) {
+	p.Parent = o
+}

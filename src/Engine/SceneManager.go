@@ -6,6 +6,7 @@ type SceneManager struct {
 }
 
 var Sm *SceneManager
+var Running bool = true
 
 func (sm *SceneManager) AddScene(s *Scene) {
 	sm.Scenes = append(sm.Scenes, s)
