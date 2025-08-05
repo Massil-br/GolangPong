@@ -2,23 +2,21 @@ package mainmenuscript
 
 import (
 	engine "github.com/Massil-br/GolangPong/src/Engine"
-	"github.com/Massil-br/GolangPong/src/scripts"
 	rl "github.com/gen2brain/raylib-go/raylib"
-	//rl "github.com/gen2brain/raylib-go/raylib"
 )
 
 type QuitButton struct {
 	Parent        *engine.GameObject
 	Collider      rl.Rectangle
 	MousePosition rl.Vector2
-	Text          *scripts.Text
+	Text          *engine.Text
 	BaseColor     rl.Color
 	HoverColor    rl.Color
 }
 
 func (p *QuitButton) Start() {
 	p.MousePosition = rl.GetMousePosition()
-	p.Text = engine.GetComponent[*scripts.Text](p.Parent)
+	p.Text = engine.GetComponent[*engine.Text](p.Parent)
 	p.Collider = rl.NewRectangle(p.Text.Position.X, p.Text.Position.Y, p.Text.TextSize.X, p.Text.TextSize.Y)
 	p.BaseColor = p.Text.Color
 	p.HoverColor = rl.Red

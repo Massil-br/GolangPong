@@ -1,12 +1,12 @@
-package scripts
+package engine
 
 import (
-	engine "github.com/Massil-br/GolangPong/src/Engine"
+	
 	rl "github.com/gen2brain/raylib-go/raylib"
 )
 
 type Text struct {
-	Parent      *engine.GameObject
+	Parent      *GameObject
 	Font        *rl.Font
 	Text        string
 	Position    rl.Vector2
@@ -28,7 +28,7 @@ func NewText(font *rl.Font, text string, color rl.Color, divFontSize float32, di
 		FontSize:    15,
 		Spacing:     8,
 		Color:       color,
-		TextSize: rl.NewVector2(0,0),
+		TextSize:    rl.NewVector2(0, 0),
 		DivFontSize: divFontSize,
 		DivSpacing:  divSpacing,
 		PXPourcent:  PxPourcent,
@@ -60,6 +60,6 @@ func (t *Text) SetText(text string) {
 func (t *Text) SetColor(color rl.Color) {
 	t.Color = color
 }
-func (t *Text) SetParent(o *engine.GameObject) {
+func (t *Text) SetParent(o *GameObject) {
 	t.Parent = o
 }

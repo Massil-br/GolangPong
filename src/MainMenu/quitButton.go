@@ -3,7 +3,6 @@ package mainmenu
 import (
 	engine "github.com/Massil-br/GolangPong/src/Engine"
 	time "github.com/Massil-br/GolangPong/src/Engine/Time"
-	"github.com/Massil-br/GolangPong/src/scripts"
 	mainmenuscript "github.com/Massil-br/GolangPong/src/scripts/MainMenuScript"
 
 	rl "github.com/gen2brain/raylib-go/raylib"
@@ -21,7 +20,7 @@ func SetupQuitButton(targetScene *engine.Scene, font *rl.Font) {
 		FrameData: &time.Data,
 	}
 
-	text := scripts.NewText(font, "Quit", rl.White, 15, 8, 50, 70)
+	text := engine.NewText(font, "Quit", rl.White, 15, 8, 50, 70)
 
 	//add component to gameobject
 	quitbutton.AddComponent(text)

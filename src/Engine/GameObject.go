@@ -4,6 +4,7 @@ import (
 	"reflect"
 
 	time "github.com/Massil-br/GolangPong/src/Engine/Time"
+	rl "github.com/gen2brain/raylib-go/raylib"
 )
 
 type Component interface {
@@ -30,6 +31,18 @@ func (g *GameObject) AddComponent(c Component) {
 	g.componentMap[reflect.TypeOf(c)] = c
 	c.SetParent(g)
 	c.Start()
+}
+
+func NewObj(name string) *GameObject {
+	return &GameObject{Name: name,
+		Active: true,
+		Transform: Transform2D{
+			Position: rl.NewVector2(0, 0),
+			Rotation: 0,
+			Scale:    rl.NewVector2(1, 1),
+		},
+		FrameData: &time.Data,
+	}
 }
 
 func GetComponent[T Component](g *GameObject) T {

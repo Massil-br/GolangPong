@@ -3,7 +3,6 @@ package mainmenu
 import (
 	engine "github.com/Massil-br/GolangPong/src/Engine"
 	time "github.com/Massil-br/GolangPong/src/Engine/Time"
-	"github.com/Massil-br/GolangPong/src/scripts"
 	rl "github.com/gen2brain/raylib-go/raylib"
 )
 
@@ -19,7 +18,7 @@ func SetupTitle(targetScene *engine.Scene, font *rl.Font) {
 		FrameData: &time.Data,
 	}
 	//component
-	text := &scripts.Text{
+	text := &engine.Text{
 		Parent:      title,
 		Font:        font,
 		Text:        "Massil's Pong",
