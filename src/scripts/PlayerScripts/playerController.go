@@ -25,12 +25,10 @@ func (pc *PlayerController) Update() {
 		return
 	}
 
-	
-
 	if rl.IsKeyDown(rl.KeyW) {
 		pc.rb.Velocity.Y = -pc.Speed
 	}
-	if rl.IsKeyDown(rl.KeyS){
+	if rl.IsKeyDown(rl.KeyS) {
 		pc.rb.Velocity.Y = pc.Speed
 	}
 
@@ -40,4 +38,8 @@ func (pc *PlayerController) Draw() {
 }
 func (pc *PlayerController) SetParent(o *engine.GameObject) {
 	pc.Parent = o
+}
+
+func (pc *PlayerController) CheckBounds() {
+	
 }

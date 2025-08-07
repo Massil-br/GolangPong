@@ -22,7 +22,9 @@ func (sm *SceneManager) Update() {
 	if len(sm.Scenes) == 0 {
 		return
 	}
+	sm.Scenes[sm.CurrentIdx].PhysicsUpdate()
 	sm.Scenes[sm.CurrentIdx].Update()
+	
 }
 
 func (sm *SceneManager) Draw() {

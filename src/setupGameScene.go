@@ -8,6 +8,7 @@ import (
 func SetupGameScene(targetScene *engine.Scene) {
 	game.SetupPlayer(targetScene)
 	game.SetupCamera(targetScene)
+	game.SetupWalls(targetScene)
 }
 
 
